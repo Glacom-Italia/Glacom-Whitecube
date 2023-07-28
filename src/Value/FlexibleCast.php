@@ -15,7 +15,7 @@ class FlexibleCast implements CastsAttributes
     protected $layouts = [];
 
     /**
-     * @var Illuminate\Database\Eloquent\Model
+     * @var \Illuminate\Database\Eloquent\Model
      */
     protected $model;
 
@@ -25,11 +25,6 @@ class FlexibleCast implements CastsAttributes
     public function get($model, string $key, $value, array $attributes)
     {
         $this->model = $model;
-
-        if(!isset($_SESSION['count'])) $_SESSION['count'] = 1;
-        else $_SESSION['count'] = $_SESSION['count'] + 1;
-
-        //dump($_SESSION['count']);
 
         return $this->cast($value, $this->getLayoutMapping());
     }
