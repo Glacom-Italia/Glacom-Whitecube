@@ -262,6 +262,7 @@ class FlexibleAttribute
     /**
      * Check attribute is an "upload" attribute and define it on the object
      *
+     * @param  mixed  $group
      * @return void
      */
     protected function setUpload()

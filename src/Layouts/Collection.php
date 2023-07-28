@@ -4,21 +4,13 @@ namespace Glacom\NovaFlexibleContent\Layouts;
 
 use Illuminate\Support\Collection as BaseCollection;
 
-/**
- * @template TKey of array-key
- * @template TLayout of \Glacom\NovaFlexibleContent\Layouts\Layout
- *
- * @extends \Illuminate\Support\Collection<TKey, TLayout>
- */
 class Collection extends BaseCollection
 {
     /**
      * Find a layout based on its name
      *
      * @param  string  $name
-     * @return \Glacom\NovaFlexibleContent\Layouts\Layout|null
-     *
-     * @psalm-return TLayout|null
+     * @return mixed
      */
     public function find($name)
     {

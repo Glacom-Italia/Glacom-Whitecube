@@ -4,11 +4,9 @@ namespace Glacom\NovaFlexibleContent\Concerns;
 
 use Illuminate\Support\Collection as BaseCollection;
 use Laravel\Nova\NovaServiceProvider;
-use Laravel\Nova\Support\Fluent;
 use Glacom\NovaFlexibleContent\Layouts\Collection;
 use Glacom\NovaFlexibleContent\Layouts\Layout;
 use Glacom\NovaFlexibleContent\Value\FlexibleCast;
-
 
 trait HasFlexible
 {
@@ -29,7 +27,7 @@ trait HasFlexible
     /**
      * Cast a Flexible Content value
      *
-     * @param  mixed  $value
+     * @param  array  $value
      * @param  array  $layoutMapping
      * @return \Glacom\NovaFlexibleContent\Layouts\Collection
      */
@@ -45,7 +43,7 @@ trait HasFlexible
     /**
      * Parse a Flexible Content from value
      *
-     * @param  array|string|\Illuminate\Support\Collection|null  $value
+     * @param  mixed  $value
      * @param  array  $layoutMapping
      * @return \Glacom\NovaFlexibleContent\Layouts\Collection
      */
@@ -65,7 +63,7 @@ trait HasFlexible
     /**
      * Transform incoming value into an array of usable layouts
      *
-     * @param  array|string|\Illuminate\Support\Collection|null  $value
+     * @param  mixed  $value
      * @return array|null
      */
     protected function getFlexibleArrayFromValue($value)
@@ -106,7 +104,7 @@ trait HasFlexible
      *
      * @param  mixed  $item
      * @param  array  $layoutMapping
-     * @return null|\Glacom\NovaFlexibleContent\Layouts\LayoutInterface
+     * @return null|Glacom\NovaFlexibleContent\Layouts\LayoutInterface
      */
     protected function getMappedLayout($item, array $layoutMapping)
     {
@@ -121,8 +119,8 @@ trait HasFlexible
         if (is_array($item)) {
             $name = $item['layout'] ?? null;
             $key = $item['key'] ?? null;
-            $attributes = (array) ($item['attributes'] ?? []);
-        } elseif (is_a($item, Fluent::class)) {
+            $attributes = (array) $item['attributes'] ?? [];
+        } elseif (is_a($item, \stdClass::class)) {
             $name = $item->layout ?? null;
             $key = $item->key ?? null;
             $attributes = (array) ($item->attributes ?? []);
@@ -133,7 +131,7 @@ trait HasFlexible
         }
 
         if (is_null($name)) {
-            return null;
+            return;
         }
 
         return $this->createMappedLayout($name, $key, $attributes, $layoutMapping);
