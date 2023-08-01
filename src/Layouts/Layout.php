@@ -152,6 +152,15 @@ class Layout implements LayoutInterface, JsonSerializable, ArrayAccess, Arrayabl
         return $this;
     }
 
+    public function forceFill(mixed $attributes)
+    {
+        foreach ($attributes as $key => $value) {
+            $this->setAttribute($key, $value);
+        }
+        return $this;
+    }
+
+
     /**
      * Retrieve the layout's name (identifier)
      *
