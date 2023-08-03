@@ -120,7 +120,7 @@ trait HasFlexible
             $name = $item['layout'] ?? null;
             $key = $item['key'] ?? null;
             $attributes = (array) $item['attributes'] ?? [];
-        } elseif (is_a($item, \Laravel\Nova\Support\Fluent::class)) {
+        } elseif (is_a($item, \stdClass::class)) {
             $name = $item->layout ?? null;
             $key = $item->key ?? null;
             $attributes = (array) ($item->attributes ?? []);
